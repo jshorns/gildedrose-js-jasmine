@@ -60,13 +60,13 @@ describe("Gilded Rose", function() {
       new Item("Sulfuras, Hand of Ragnaros", 0, 80),
       new Item("Sulfuras, Hand of Ragnaros", -1, 80),
     ]
-    it("increases quality of the brie", function(){
+    it("does not change anything", function(){
       let gildedRose = new Shop(sulfurases)
-      let newBrie = gildedRose.updateQuality()
-      expect(sulfurases[0].sellIn).toEqual(0)
-      expect(sulfurases[0].quality).toEqual(80)
-      expect(sulfurases[1].sellIn).toEqual(-1)
-      expect(sulfurases[1].quality).toEqual(80)
+      let newSulfurases = gildedRose.updateQuality()
+      expect(newSulfurases[0].sellIn).toEqual(0)
+      expect(newSulfurases[0].quality).toEqual(80)
+      expect(newSulfurases[1].sellIn).toEqual(-1)
+      expect(newSulfurases[1].quality).toEqual(80)
     })
   })
   describe("for backstage passes", function(){
@@ -77,7 +77,7 @@ describe("Gilded Rose", function() {
       new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
       new Item("Backstage passes to a TAFKAL80ETC concert", 0, 46),
     ]
-    it("increases quality of the brie", function(){
+    it("increases quality of the passes appropriately, or returns 0 if date is passed", function(){
       let gildedRose = new Shop(backstagePasses)
       let newBP = gildedRose.updateQuality()
       expect(newBP[0].sellIn).toEqual(14)
