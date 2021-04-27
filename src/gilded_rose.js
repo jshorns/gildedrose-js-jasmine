@@ -9,14 +9,16 @@ class Item {
 class Shop {
   constructor(items=[]){
     this.items = items;
+    this.MAX_QUALITY = 50;
+    this.MIN_QUALITY = 0;
   }
   increaseQuality(item) {
-    if (item.quality < 50) {
+    if (item.quality < this.MAX_QUALITY) {
       item.quality ++
     }
   }
   decreaseQuality(item) {
-    if (item.quality > 0) {
+    if (item.quality > this.MIN_QUALITY) {
       item.quality --
     }
   }
