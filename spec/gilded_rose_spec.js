@@ -40,6 +40,32 @@ describe("Gilded Rose", function() {
 
       })
     })
+    describe("for Confjured items", function(){
+      let conjuredItems = [
+        new Item("Conjured Chonky", 10, 20),
+        new Item("Conjured Beans", 5, 0),
+        new Item("Conjured Peanuts", 0, 4),
+      ]
+      it("ages items appropriately before sell-by date passed", function(){
+        let gildedRose = new Shop([conjuredItems[0], conjuredItems[1]])
+        let updatedConjuredItems = gildedRose.updateQuality()
+        expect(updatedConjuredItems[0].name).toEqual("Conjured Chonky")
+        expect(updatedConjuredItems[0].sellIn).toEqual(9)
+        expect(updatedConjuredItems[0].quality).toEqual(18)
+        expect(updatedConjuredItems[1].name).toEqual("Conjured Beans")
+        expect(updatedConjuredItems[1].sellIn).toEqual(4)
+        expect(updatedConjuredItems[1].quality).toEqual(0)
+
+      })
+      it("ages items appropriately after sell-by date passed", function(){
+        let gildedRose = new Shop([conjuredItems[2]])
+        let updatedConjuredItems = gildedRose.updateQuality()
+        expect(updatedConjuredItems[0].name).toEqual("Conjured Peanuts")
+        expect(updatedConjuredItems[0].sellIn).toEqual(-1)
+        expect(updatedConjuredItems[0].quality).toEqual(0)
+
+      })
+    })
     describe("for brie", function(){
       let bries = [
         new Item("Aged Brie", 5, 4),
