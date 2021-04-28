@@ -47,6 +47,10 @@ class Shop {
         this.decreaseQuality(item)
          }
       }
+  conjuredItems(item) {
+    this.normalItems(item)
+    this.normalItems(item)
+  }
   updateQuality() {
     for (var item of this.items) {
       if (item.name === 'Sulfuras, Hand of Ragnaros') continue
@@ -57,6 +61,10 @@ class Shop {
       }
       if (item.name === 'Backstage passes to a TAFKAL80ETC concert') {
         this.backstagePasses(item)
+        continue
+      }
+      if (item.name.match(/^Conjured.*$/)) {
+        this.conjuredItems(item)
         continue
       }
       this.normalItems(item)
