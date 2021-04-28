@@ -48,30 +48,32 @@ class Shop {
          }
       }
   conjuredItems(item) {
+    for(let i = 0; i < 2; i++) {
     this.normalItems(item)
-    this.normalItems(item)
+    }
   }
   updateQuality() {
     for (var item of this.items) {
-      if (item.name === 'Sulfuras, Hand of Ragnaros') continue
-      item.sellIn = item.sellIn - 1;
+      if (item.name === 'Sulfuras, Hand of Ragnaros') continue;
+      item.sellIn --;
       if (item.name === 'Aged Brie') {
-        this.agedBrie(item)
-        continue
-      }
+        this.agedBrie(item);
+        continue;
+      };
       if (item.name === 'Backstage passes to a TAFKAL80ETC concert') {
-        this.backstagePasses(item)
-        continue
+        this.backstagePasses(item);
+        continue;
       }
       if (item.name.match(/^Conjured.*$/)) {
-        this.conjuredItems(item)
-        continue
-      }
-      this.normalItems(item)
-    }
+        this.conjuredItems(item);
+        continue;
+      };
+      this.normalItems(item);
+    };
     return this.items;
   }
 }
+
 module.exports = {
   Item,
   Shop
