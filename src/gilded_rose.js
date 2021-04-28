@@ -41,6 +41,12 @@ class Shop {
       this.increaseQuality(backstagePass)
     }
   }
+  normalItems(item) {
+    this.decreaseQuality(item)
+      if (item.sellIn < 0) {
+        this.decreaseQuality(item)
+         }
+      }
   updateQuality() {
     for (var item of this.items) {
       if (item.name === 'Sulfuras, Hand of Ragnaros') continue
@@ -53,12 +59,8 @@ class Shop {
         this.backstagePasses(item)
         continue
       }
-      this.decreaseQuality(item)
-      if (item.sellIn < 0) {
-        this.decreaseQuality(item)
-         }
-      }
-
+      this.normalItems(item)
+    }
     return this.items;
   }
 }
