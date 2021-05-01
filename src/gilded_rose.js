@@ -29,17 +29,34 @@ class Shop {
       }
   }
   backstagePasses(backstagePass) {
-    if (backstagePass.sellIn < 0) {
-      backstagePass.quality = 0
-      return
+    let sellby = backstagePass.sellIn
+    switch(true) {
+      case (sellby < 0):
+        backstagePass.quality = 0
+        break;
+      case (sellby <= 5):
+        for(let i = 0; i < 3; i++) {
+          this.increaseQuality(backstagePass)
+          }
+      break;
+      case (sellby <= 10 ):
+        for(let i = 0; i < 2; i++) {
+          this.increaseQuality(backstagePass)
+          }
+        break;
+      default:
+        this.increaseQuality(backstagePass)
     }
-    this.increaseQuality(backstagePass)
-    if (backstagePass.sellIn < 10) {
-      this.increaseQuality(backstagePass)
-    }
-    if (backstagePass.sellIn < 5 ) {
-      this.increaseQuality(backstagePass)
-    }
+    // if (backstagePass.sellIn < 0) {
+    //   return
+    // }
+    // this.increaseQuality(backstagePass)
+    // if (backstagePass.sellIn < 10) {
+    //   this.increaseQuality(backstagePass)
+    // }
+    // if (backstagePass.sellIn < 5 ) {
+    //   this.increaseQuality(backstagePass)
+    // }
   }
   normalItems(item) {
     this.decreaseQuality(item)
