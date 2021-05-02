@@ -121,7 +121,7 @@ describe("Gilded Rose", function() {
       new Item("Conjured Elixir of the Mongoose", 5, 7),
       new Item("Conjured +5 Dexterity Vest", 10, 20)
     ]
-    it("increases quality of the passes appropriately, or returns 0 if date is passed", function(){
+    it("increases quality appropriately", function(){
       let gildedRose = new Shop(items)
       let updatedItems = gildedRose.updateQuality()
 

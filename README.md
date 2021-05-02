@@ -16,7 +16,7 @@
 - Also to make the code easy to change, I made min and max quality into properties of the Shop class. This way they could very easily be adjusted if needed and would only needed to be changed in one part of the code.
 - Finally, for thoroughness I added a test suite for the full range of items as provided in the text tests.
 - **What I would have done differently** - as I was refactoring rather than changing functionality, and my existing tests tested behaviour as needed, I did not write unit tests for the individual functions for each item group, as I felt my programming could be driven by the tests I already had. Retrospectively I would have added the extra tests, as it would have made it easier to identify the behaviour of the functions themselves.
-- After doing the Ruby version and using a case/when statement, I came back to this to use a switch/case statement in the backstage Passes function. I am not totally sure whether this is better, because the code is longer, but I do think it makes it easier to read and change.
+- After doing the Ruby version and using a case/when statement, I came back to this to use a switch/case statement in the backstage Passes function. I am not totally sure whether this is better, because the code is longer, but I do think it makes it easier to read and change. another step would be to change the entire function to use a switch to decide which method to call.
 
 ## Kata details
 

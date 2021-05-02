@@ -47,16 +47,6 @@ class Shop {
       default:
         this.increaseQuality(backstagePass)
     }
-    // if (backstagePass.sellIn < 0) {
-    //   return
-    // }
-    // this.increaseQuality(backstagePass)
-    // if (backstagePass.sellIn < 10) {
-    //   this.increaseQuality(backstagePass)
-    // }
-    // if (backstagePass.sellIn < 5 ) {
-    //   this.increaseQuality(backstagePass)
-    // }
   }
   normalItems(item) {
     this.decreaseQuality(item)
@@ -69,23 +59,52 @@ class Shop {
     this.normalItems(item)
     }
   }
+
+  isConjured(item) {
+    if (item.name.match(/^Conjured.*$/)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
   updateQuality() {
     for (var item of this.items) {
-      if (item.name === 'Sulfuras, Hand of Ragnaros') continue;
-      item.sellIn --;
-      if (item.name === 'Aged Brie') {
-        this.agedBrie(item);
-        continue;
-      };
-      if (item.name === 'Backstage passes to a TAFKAL80ETC concert') {
-        this.backstagePasses(item);
-        continue;
+      switch(true) {
+        case (item.name === 'Sulfuras, Hand of Ragnaros'):
+          break;
+        case (item.name === 'Aged Brie'):
+          item.sellIn --;
+          this.agedBrie(item);
+          break;
+        case (item.name === 'Backstage passes to a TAFKAL80ETC concert'):
+          item.sellIn --;
+          this.backstagePasses(item);
+          break;
+        case (this.isConjured(item)):
+          item.sellIn --;
+          this.conjuredItems(item);
+          break;
+        default:
+          item.sellIn --;
+          this.normalItems(item)
+          break;
       }
-      if (item.name.match(/^Conjured.*$/)) {
-        this.conjuredItems(item);
-        continue;
-      };
-      this.normalItems(item);
+      // if (item.name === 'Sulfuras, Hand of Ragnaros') continue;
+      // item.sellIn --;
+      // if (item.name === 'Aged Brie') {
+      //   this.agedBrie(item);
+      //   continue;
+      // };
+      // if (item.name === 'Backstage passes to a TAFKAL80ETC concert') {
+      //   this.backstagePasses(item);
+      //   continue;
+      // }
+      // if (item.name.match(/^Conjured.*$/)) {
+      //   this.conjuredItems(item);
+      //   continue;
+      // };
+      // this.normalItems(item);
     };
     return this.items;
   }
